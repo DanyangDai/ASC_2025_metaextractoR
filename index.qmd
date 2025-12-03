@@ -27,11 +27,11 @@ filters:
    - roughnotation
 ---
 
-##  {#title-slide background="images/bg_titlepage.jepg"background-size="100%"}
+##  {#title-slide background="images/bg_titlepage.png"background-size="100%"}
 
 ```{r setup, include = FALSE}
 #library(tidyverse)
-#library(emo)
+#library(emo)e
 
 rotating_text <- function(x, align = "center") {
   glue::glue('
