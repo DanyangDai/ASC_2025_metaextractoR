@@ -27,7 +27,7 @@ filters:
    - roughnotation
 ---
 
-##  {#title-slide background="images/bg_titlepage.png"background-size="100%"}
+##  {#title-slide background="images/bg_titlepage.jepg"background-size="100%"}
 
 ```{r setup, include = FALSE}
 #library(tidyverse)
@@ -164,34 +164,137 @@ There are three shinyapps that provide user-friendly interface for anyone to ext
 
 ## [Accurate Evaluation]{auto-animate="true"}
 
-```{r tbl-table1}
-#| echo: false
-#| tbl-cap: "Accuracy of the LLMs. For all LLMs, the model temperature was set to be 0."
-readRDS(here::here("data/accuracy_TT.rds")) |> 
-  knitr::kable(col.names = c("Model", "No. Patients", "No. AKI", "ICU Only", "Mean Age", "Median Age", "Start Date", "End Date"), 
-               digits = 2,
-               booktabs = TRUE,
-               linesep = "", font_size = 10, escape = FALSE) |> 
-  kableExtra::kable_styling(latex_options = c("striped"))
 
-```
+<table>
+  <caption> For all LLMs, the model temperature was set to 0.</caption>
+  <tr>
+    <th>Model</th>
+    <th>No. Patients</th>
+    <th>No. AKI</th>
+    <th>ICU Only</th>
+    <th>Mean Age</th>
+    <th>Median Age</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+  </tr>
 
-## [Run time]{auto-animate="true"}
+  <tr class="fragment">
+    <td>llama</td>
+    <td style="background:#ffeb3b;">0.85</td>
+    <td style="background:#ffeb3b;">0.86</td>
+    <td>0.79</td>
+    <td style="background:#ffeb3b;">0.73</td>
+    <td>0.45</td>
+    <td>0.44</td>
+    <td>0.47</td>
+  </tr>
 
-```{r tbl-table2}
-#| echo: false
-#| tbl-cap: "Total Accuracy of the LLMs and Run Time"
-#| label: tbl-table2
+  <tr class="fragment">
+    <td>gemma</td>
+    <td>0.68</td>
+    <td>0.53</td>
+    <td style="background:#ffeb3b;">0.89</td>
+    <td style="background:#ffeb3b;">0.73</td>
+    <td style="background:#ffeb3b;">0.64</td>
+    <td>0.40</td>
+    <td>0.49</td>
+  </tr>
 
-knitr::kable(
-  data.frame(
-    Model     = c("llama3.1", "gemma3", "medllama2", "mistral", "nuextract", "deepseek-r1"),
-    Accuracy  = c(0.693, 0.594, 0.533, 0.594, 0.529, 0.483),
-    Run_Time  = c("9.21 mins", "9.02 mins", "9.61 mins", "11.55 mins", "6.91 mins", "11.48 mins")
-  ),linesep = "", font_size = 10
-)
+  <tr class="fragment">
+    <td>medllama</td>
+    <td>0.66</td>
+    <td>0.51</td>
+    <td>0.32</td>
+    <td style="background:#ffeb3b;">0.73</td>
+    <td>NA</td>
+    <td style="background:#ffeb3b;">0.51</td>
+    <td>0.49</td>
+  </tr>
 
-```
+  <tr class="fragment">
+    <td>mistral</td>
+    <td>0.76</td>
+    <td>0.49</td>
+    <td>0.53</td>
+    <td style="background:#ffeb3b;">0.73</td>
+    <td style="background:#ffeb3b;">0.64</td>
+    <td>0.42</td>
+    <td>0.51</td>
+  </tr>
+
+  <tr class="fragment">
+    <td>nuextract</td>
+    <td style="background:#ffeb3b;">0.85</td>
+    <td>0.30</td>
+    <td>0.47</td>
+    <td>0.64</td>
+    <td>0.45</td>
+    <td>0.28</td>
+    <td>0.35</td>
+  </tr>
+
+  <tr class="fragment">
+    <td>deepseek</td>
+    <td>0.42</td>
+    <td>0.51</td>
+    <td>0.37</td>
+    <td style="background:#ffeb3b;">0.73</td>
+    <td>0.55</td>
+    <td style="background:#ffeb3b;">0.51</td>
+    <td style="background:#ffeb3b;">0.53</td>
+  </tr>
+</table>
+
+
+
+
+## [Total Accuracy of the LLMs and Run Time]{auto-animate="true"}
+
+<table>
+  <tr>
+    <th>Model</th>
+    <th>Accuracy</th>
+    <th>Run time</th>
+  </tr>
+  
+  <tr class="fragment">
+    <td>llama3.1</td>
+    <td style="background:#ffeb3b;">0.693</td>
+    <td>9.21 mins</td>
+  </tr>
+  
+  <tr class="fragment">
+    <td>gemma3</td>
+    <td>0.594</td>
+    <td>9.02 mins</td>
+  </tr>
+  
+  <tr class="fragment">
+    <td>medllama2</td>
+    <td>0.533</td>
+    <td>9.61 mins</td>
+  </tr>
+  
+  <tr class="fragment">
+    <td>mistral</td>
+    <td>0.594</td>
+    <td>11.55 mins</td>
+  </tr>
+  
+  <tr class="fragment">
+    <td>nuextract</td>
+    <td>0.529</td>
+    <td style="background:#ffeb3b;">6.91 mins</td>
+  </tr>
+  
+  <tr class="fragment">
+    <td>deepseek-r1</td>
+    <td>0.483</td>
+    <td>11.48 mins</td>
+  </tr>
+  
+</table>
+
 
 ## [Furture work]{auto-animate="true"}
 
@@ -252,3 +355,4 @@ Professor Jason Pole [j.pole\@uq.edu.au](j.pole@uq.edu.au)
 :::
 :::::
 :::::::::
+
