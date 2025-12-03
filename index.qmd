@@ -27,7 +27,7 @@ filters:
    - roughnotation
 ---
 
-##  {#title-slide background="images/bg_titlepage.jpeg" background-size="100%"}
+##  {#title-slide background="images/bg_titlepage.png"background-size="100%"}
 
 ```{r setup, include = FALSE}
 #library(tidyverse)
@@ -84,42 +84,41 @@ detach_package <- function(pkg, character.only = FALSE)
 :::
 
 ::: notes
-Hello everybody. Thank you for coming today. I am a third year PhD student at the University of Queensland. I will be graduating mid-year next year and I will be looking for postdoc and other teaching and researching opportunities worldwide. 
+Hello everybody. Thank you for coming today. I am a third year PhD student at the University of Queensland. I will be graduating mid-year next year and I will be looking for postdoc and other teaching and researching opportunities worldwide.
 :::
 
 ## [Acknowledgement of Country]{auto-animate="true"}
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 <br><br>
-<p style="text-align: center;">I acknowledge the Traditional Owners and their custodianship of the lands on which we meet.  
-We pay our respects to their Ancestors and their descendants, who continue cultural and spiritual connections to Country.</p>
+
+<p style="text-align: center;">
+
+I acknowledge the Traditional Owners and their custodianship of the lands on which we meet.\
+We pay our respects to their Ancestors and their descendants, who continue cultural and spiritual connections to Country.
+
+</p>
 :::
 
 ::: {.column width="50%"}
 ![](images/ack_cou.jpg){fig-align="center"}
-
 :::
-
-:::
+:::::
 
 ## [What is Systematic Reivew?]{auto-animate="true"}
 
-- A structured, comprehensive method for identifying and summarising all available evidence on a specific research question.
+-   A structured, comprehensive method for identifying and summarising all available evidence on a specific research question.
 
-- Systematic reviews and meta-analyses are pillars of evidence-based medicine. 
+-   Systematic reviews and meta-analyses are pillars of evidence-based medicine.
 
-
-- ![](images/SR_steps.png){fig-align="center"}
+-   ![](images/SR_steps.png){fig-align="center"}
 
 ::: notes
-
 Systematic reviews and meta-analyses are widely regarded as the "gold standard" for generating high-quality evidence to inform clinical practice and policy decisions.
 
-The steps includes topic selection, conceptualised and create protocol, searching for studies,screening for studies,appraise studies, data extraction, synthesis and interpret results. 
-
+The steps includes topic selection, conceptualised and create protocol, searching for studies,screening for studies,appraise studies, data extraction, synthesis and interpret results.
 :::
-
 
 ## [Example of a sysrematic review and meta-analysis]{auto-animate="true"}
 
@@ -127,54 +126,41 @@ The steps includes topic selection, conceptualised and create protocol, searchin
 
 </iframe>
 
-
 ::: notes
-
-In this systematic review and mate-analysis, we are trying to identify the true prevalence of COVID-associated Acute Kidney Injury. Yes, you heard me correct. Once of the common complication of COVID among hospitalised patients is Acute Kidney Injury (AKI), which is a sudden loss of kidney function measured by the change in serum creatinine. 
+In this systematic review and mate-analysis, we are trying to identify the true prevalence of COVID-associated Acute Kidney Injury. Yes, you heard me correct. Once of the common complication of COVID among hospitalised patients is Acute Kidney Injury (AKI), which is a sudden loss of kidney function measured by the change in serum creatinine.
 
 The reason driving this pice of meta-analysis was that when I was looking up the AKI prevalence among the published literatures, this number varies from 1% to 70%. Of course the AKI prevalence would be different based on different clinical setting. i.e. ICU vs non-ICU, different COVID management policy such as straight lockdown vs Herd immunity. Regardless, we want to provide a global overview of the COVID-19 AKI prevalence reported in published studies to uncover geographic and socioeconomic disparities.
 
 In order to do that, we extracted data from more than 300 publihsed papers using Covidence.
 
-Just in case if you are not familiar with Covidence, let me show you an exmaple. 
-
-
+Just in case if you are not familiar with Covidence, let me show you an exmaple.
 :::
 
 ## [Data extraction - Covidence]{auto-animate="true"}
 
-
 [![](images/covidence.png){fig-align="center"}](https://app.covidence.org/sign_in)
 
 ::: notes
+This is a very manual process as you can see, it requires a lot of huamn effort.
 
-This is a very manual process as you can see, it requires a lot of huamn effort. 
-
-For a more robust process, dual extraction is required sometime. This means that this process will be done twice by two individuals. 
-
-
+For a more robust process, dual extraction is required sometime. This means that this process will be done twice by two individuals.
 :::
-
 
 ## [Design of metaextractoR]{auto-animate="true"}
 
 ![](images/flowchat.png){fig-align="center" width="1400" height="600"}
 
 ::: notes
+Given the labour intensive process for data extraction, to remove some of the labour work, we developed this R package, metaextractoR that embeded Large Language Models to help with data extraction.
 
-Given the labour intensive process for data extraction, to remove some of the labour work, we developed this R package, metaextractoR that embeded Large Language Models to help with data extraction. 
+The design of this workflow follows the Cochrance systematic review guideline. At each step, there is a human-in-the-loop process incorprated.
 
-The design of this workflow follows the Cochrance systematic review guideline. At each step, there is a human-in-the-loop process incorprated. 
-
-There are three shinyapps that provide user-friendly interface for anyone to extract data using LLMs. 
-
+There are three shinyapps that provide user-friendly interface for anyone to extract data using LLMs.
 :::
-
 
 ## [Demo]{auto-animate="true"}
 
 ![](images/ollama-tool.png){fig-align="center"}
-
 
 ## [Accurate Evaluation]{auto-animate="true"}
 
@@ -207,66 +193,62 @@ knitr::kable(
 
 ```
 
-
 ## [Furture work]{auto-animate="true"}
 
-- Expand the extraction to text for qualitative analysis 
+-   Expand the extraction to text for qualitative analysis
 
-- Allow full-text data extraction 
+-   Allow full-text data extraction
 
-- Allow other closed-sourced LLMs 
-
-
+-   Allow other closed-sourced LLMs
 
 ## [Acknowledgement]{auto-animate="true"}
 
 <br>
+
 <p style="text-align: center;">
 
-Dr. Emi Tanaka  [emi.tanaka@anu.edu.au](emi.tanaka@anu.edu.au)
-
-</p>
-
-<br>
-<p style="text-align: center;">
-
-Professor Jason Pole  [j.pole@uq.edu.au](j.pole@uq.edu.au)
-
+Dr. Emi Tanaka [emi.tanaka\@anu.edu.au](emi.tanaka@anu.edu.au)
 
 </p>
 
 <br>
 
+<p style="text-align: center;">
+
+Professor Jason Pole [j.pole\@uq.edu.au](j.pole@uq.edu.au)
+
+</p>
+
+<br>
 
 ::: {layout="[50,50]"}
-
 ![](images/logos.jpeg){fig-align="center" width="300" height="300"}
 
 ![](images/ssa.png){fig-align="center" width="300" height="300"}
-
 :::
 
 ## [Github and Installation]{auto-animate="true"}
 
 `r fa_list(c("fa-solid fa-globe" = "https://danyangdai.github.io/metaextractoR/","fa-solid fa-code-branch" = "Collaborate at: https://github.com/DanyangDai/metaextractoR"))`
 
-::: columns
-::: column
-<div style="text-align:center;">
-![](images/qr_github.png){width=300} 
-</div>
+::::::::: columns
+::::: column
+::: {style="text-align:center;"}
+![](images/qr_github.png){width="300"}
+:::
 
-<div style="text-align:center;">
+::: {style="text-align:center;"}
 <i class="fa-brands fa-github fa-2x"></i>
-</div>
 :::
-::: column
-<div style="text-align:center;">
-![](images/qr_youtube.png){width=300} 
-</div>
+:::::
 
-<div style="text-align:center;">
+::::: column
+::: {style="text-align:center;"}
+![](images/qr_youtube.png){width="300"}
+:::
+
+::: {style="text-align:center;"}
 <i class="fa-brands fa-youtube fa-2x"></i>
-</div>
 :::
-:::
+:::::
+:::::::::
