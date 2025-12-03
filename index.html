@@ -160,7 +160,8 @@ metaextractoR: An R Package for Streamlined Data Extraction in Systematic Review
 <p><span class="rladies-purple">4th of Decemeber</span> <span class="rladies-purple">ASC 2025</span></p>
 </div>
 <aside class="notes">
-<p>Hello everybody. Thank you for coming today. I am a third year PhD student at the University of Queensland. I will be graduating mid-year next year and I will be looking for postdoc and other teaching and researching opportunities worldwide.</p>
+<p>Hello everybody. Thank you for coming today.I am Daidai and I am a third year PhD student from the University of Queensland. I’m in the final stages of my PhD, graduating mid-next year, and I’m starting to look ahead to my next chapter.</p>
+<p>Today, I will be showcasing my very first R package that utilise Large Language Models to extract data for systematic review and meta-analysis.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -189,6 +190,19 @@ We pay our respects to their Ancestors and their descendants, who continue cultu
 </figure>
 </div>
 </div></div>
+<aside class="notes">
+<p>Before I start my presentation, I would like to acknowledge the Traditional Owners and their custodianship of the lands on which we meet. We pay our respects to their Ancestors and their descendants, who continue cultural and spiritual connections to Country.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="what-is-systematic-reivew" class="slide level2">
 <h2><span data-auto-animate="true">What is Systematic Reivew?</span></h2>
@@ -202,8 +216,9 @@ We pay our respects to their Ancestors and their descendants, who continue cultu
 </div></li>
 </ul>
 <aside class="notes">
-<p>Systematic reviews and meta-analyses are widely regarded as the “gold standard” for generating high-quality evidence to inform clinical practice and policy decisions.</p>
+<p>Systematic review and meta-analysis might not be a familiar term for many of you. They are widely regarded as the “gold standard” for generating high-quality evidence to inform clinical practice and policy decisions.</p>
 <p>The steps includes topic selection, conceptualised and create protocol, searching for studies,screening for studies,appraise studies, data extraction, synthesis and interpret results.</p>
+<p>This might still be quite abstract to you, so let me show you an example.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -221,10 +236,10 @@ We pay our respects to their Ancestors and their descendants, who continue cultu
 <iframe src="https://jogh.org/2025/jogh-15-04166" width="1200" height="600" style="border:none;">
 </iframe>
 <aside class="notes">
-<p>In this systematic review and mate-analysis, we are trying to identify the true prevalence of COVID-associated Acute Kidney Injury. Yes, you heard me correct. Once of the common complication of COVID among hospitalised patients is Acute Kidney Injury (AKI), which is a sudden loss of kidney function measured by the change in serum creatinine.</p>
-<p>The reason driving this pice of meta-analysis was that when I was looking up the AKI prevalence among the published literatures, this number varies from 1% to 70%. Of course the AKI prevalence would be different based on different clinical setting. i.e.&nbsp;ICU vs non-ICU, different COVID management policy such as straight lockdown vs Herd immunity. Regardless, we want to provide a global overview of the COVID-19 AKI prevalence reported in published studies to uncover geographic and socioeconomic disparities.</p>
-<p>In order to do that, we extracted data from more than 300 publihsed papers using Covidence.</p>
-<p>Just in case if you are not familiar with Covidence, let me show you an exmaple.</p>
+<p>In this systematic review and meta-analysis, we set out to understand the true prevalence of COVID-associated acute kidney injury. Yes—you heard that right. Acute kidney injury, or AKI, is actually one of the more common complications seen in hospitalised COVID patients. It refers to a sudden loss of kidney function, typically detected through changes in serum creatinine.</p>
+<p>What sparked this project was a simple question: why do published AKI prevalence vary so dramatically? When I looked into the literature, I found reported prevalence ranging anywhere from 1% to 70%. So, we undertook this systematic review and meta-analysis to bring clarity to the global picture—examining where and why COVID-associated AKI rates differ, and uncovering geographic and socioeconomic patterns that may explain these disparities.</p>
+<p>In this systematic review and meta-analysis, we observed a clear pattern: COVID-associated AKI higher in high-income countries, and substantially lower in low- and lower-middle-income countries. For more information, please see the paper.</p>
+<p>To arrive at this finding, we extracted data from over 300 published studies using Covidence. And in case you’re not familiar with Covidence, let me show you a quick example of how it works.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -267,9 +282,12 @@ We pay our respects to their Ancestors and their descendants, who continue cultu
 </figure>
 </div>
 <aside class="notes">
-<p>Given the labour intensive process for data extraction, to remove some of the labour work, we developed this R package, metaextractoR that embeded Large Language Models to help with data extraction.</p>
-<p>The design of this workflow follows the Cochrance systematic review guideline. At each step, there is a human-in-the-loop process incorprated.</p>
-<p>There are three shinyapps that provide user-friendly interface for anyone to extract data using LLMs.</p>
+<p>Because data extraction can be incredibly labour-intensive, we wanted a way to streamline the process. So we built an R package called metaextractoR, which uses large language models to help automate parts of data extraction and reduce the manual workload.</p>
+<p>The workflow is designed around the Cochrane systematic review guidelines, and importantly, it keeps humans in the loop at every step to make sure the output stays accurate and reliable.</p>
+<p>We’ve also created three Shiny apps that give users an easy, intuitive interface, so anyone can extract data with the help of LLMs—without much coding background.</p>
+<p>The first step is load in the list of abstracts included for your systematic reivew and meta-analysis.</p>
+<p>We will use the buidin function in this package to separate the list of abstracts into training and testing set.</p>
+<p>The training set will be used in the first and second apps for prompt engineering and model selection, the testing set will be use for bath processing and validation.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -574,7 +592,7 @@ deepseek-r1
 <p></p>
 <p><br></p>
 <p style="text-align: center;">
-</p><p>Professor Jason Pole <a href="j.pole@uq.edu.au">j.pole@uq.edu.au</a></p>
+</p><p>Prof.&nbsp;Jason Pole <a href="j.pole@uq.edu.au">j.pole@uq.edu.au</a></p>
 <p></p>
 <p><br></p>
 <div>
