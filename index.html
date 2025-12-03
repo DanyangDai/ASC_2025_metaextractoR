@@ -125,15 +125,13 @@
       margin-right: 0; 
     }
   </style>
-  <script src="index_files/libs/kePrint-0.0.1/kePrint.js"></script>
-  <link href="index_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 
-<section id="title-slide" class="slide level2 center" data-background="images/bg_titlepage.jpeg" data-background-size="100%">
+<section id="title-slide" class="slide level2 center" data-background="images/bg_titlepage.jepg" data-background-size="100%">
 <h2></h2>
 <div class="title-box">
 <h2>
@@ -179,11 +177,11 @@ metaextractoR: An R Package for Streamlined Data Extraction in Systematic Review
 <h2><span data-auto-animate="true">Acknowledgement of Country</span></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<br><br>
+<p><br><br></p>
 <p style="text-align: center;">
-I acknowledge the Traditional Owners and their custodianship of the lands on which we meet.<br>
-We pay our respects to their Ancestors and their descendants, who continue cultural and spiritual connections to Country.
-</p>
+</p><p>I acknowledge the Traditional Owners and their custodianship of the lands on which we meet.<br>
+We pay our respects to their Ancestors and their descendants, who continue cultural and spiritual connections to Country.</p>
+<p></p>
 </div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -290,154 +288,275 @@ We pay our respects to their Ancestors and their descendants, who continue cultu
 <img data-src="images/ollama-tool.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="accurate-evaluation" class="slide level2">
 <h2><span data-auto-animate="true">Accurate Evaluation</span></h2>
-<div class="cell">
-<div id="tbl-table1" class="cell quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-tbl">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-table1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Accuracy of the LLMs. For all LLMs, the model temperature was set to be 0.
-</figcaption>
-<div aria-describedby="tbl-table1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="table do-not-create-environment cell caption-top" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Model</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">No. Patients</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">No. AKI</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">ICU Only</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Mean Age</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Median Age</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Start Date</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">End Date</th>
+<table>
+<caption>
+For all LLMs, the model temperature was set to 0.
+</caption>
+<tbody><tr>
+<th>
+Model
+</th>
+<th>
+No.&nbsp;Patients
+</th>
+<th>
+No.&nbsp;AKI
+</th>
+<th>
+ICU Only
+</th>
+<th>
+Mean Age
+</th>
+<th>
+Median Age
+</th>
+<th>
+Start Date
+</th>
+<th>
+End Date
+</th>
 </tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">llama</td>
-<td style="text-align: right;">0.85</td>
-<td style="text-align: right;">0.86</td>
-<td style="text-align: right;">0.79</td>
-<td style="text-align: right;">0.73</td>
-<td style="text-align: right;">0.45</td>
-<td style="text-align: right;">0.44</td>
-<td style="text-align: right;">0.47</td>
+<tr class="fragment">
+<td>
+llama
+</td>
+<td style="background:#ffeb3b;">
+0.85
+</td>
+<td style="background:#ffeb3b;">
+0.86
+</td>
+<td>
+0.79
+</td>
+<td style="background:#ffeb3b;">
+0.73
+</td>
+<td>
+0.45
+</td>
+<td>
+0.44
+</td>
+<td>
+0.47
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">gemma</td>
-<td style="text-align: right;">0.68</td>
-<td style="text-align: right;">0.53</td>
-<td style="text-align: right;">0.89</td>
-<td style="text-align: right;">0.73</td>
-<td style="text-align: right;">0.64</td>
-<td style="text-align: right;">0.40</td>
-<td style="text-align: right;">0.49</td>
+<tr class="fragment">
+<td>
+gemma
+</td>
+<td>
+0.68
+</td>
+<td>
+0.53
+</td>
+<td style="background:#ffeb3b;">
+0.89
+</td>
+<td style="background:#ffeb3b;">
+0.73
+</td>
+<td style="background:#ffeb3b;">
+0.64
+</td>
+<td>
+0.40
+</td>
+<td>
+0.49
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">medllama</td>
-<td style="text-align: right;">0.66</td>
-<td style="text-align: right;">0.51</td>
-<td style="text-align: right;">0.32</td>
-<td style="text-align: right;">0.73</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0.51</td>
-<td style="text-align: right;">0.49</td>
+<tr class="fragment">
+<td>
+medllama
+</td>
+<td>
+0.66
+</td>
+<td>
+0.51
+</td>
+<td>
+0.32
+</td>
+<td style="background:#ffeb3b;">
+0.73
+</td>
+<td>
+NA
+</td>
+<td style="background:#ffeb3b;">
+0.51
+</td>
+<td>
+0.49
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">mistral</td>
-<td style="text-align: right;">0.76</td>
-<td style="text-align: right;">0.49</td>
-<td style="text-align: right;">0.53</td>
-<td style="text-align: right;">0.73</td>
-<td style="text-align: right;">0.64</td>
-<td style="text-align: right;">0.42</td>
-<td style="text-align: right;">0.51</td>
+<tr class="fragment">
+<td>
+mistral
+</td>
+<td>
+0.76
+</td>
+<td>
+0.49
+</td>
+<td>
+0.53
+</td>
+<td style="background:#ffeb3b;">
+0.73
+</td>
+<td style="background:#ffeb3b;">
+0.64
+</td>
+<td>
+0.42
+</td>
+<td>
+0.51
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">nuextract</td>
-<td style="text-align: right;">0.85</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: right;">0.64</td>
-<td style="text-align: right;">0.45</td>
-<td style="text-align: right;">0.28</td>
-<td style="text-align: right;">0.35</td>
+<tr class="fragment">
+<td>
+nuextract
+</td>
+<td style="background:#ffeb3b;">
+0.85
+</td>
+<td>
+0.30
+</td>
+<td>
+0.47
+</td>
+<td>
+0.64
+</td>
+<td>
+0.45
+</td>
+<td>
+0.28
+</td>
+<td>
+0.35
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">deepseek</td>
-<td style="text-align: right;">0.42</td>
-<td style="text-align: right;">0.51</td>
-<td style="text-align: right;">0.37</td>
-<td style="text-align: right;">0.73</td>
-<td style="text-align: right;">0.55</td>
-<td style="text-align: right;">0.51</td>
-<td style="text-align: right;">0.53</td>
+<tr class="fragment">
+<td>
+deepseek
+</td>
+<td>
+0.42
+</td>
+<td>
+0.51
+</td>
+<td>
+0.37
+</td>
+<td style="background:#ffeb3b;">
+0.73
+</td>
+<td>
+0.55
+</td>
+<td style="background:#ffeb3b;">
+0.51
+</td>
+<td style="background:#ffeb3b;">
+0.53
+</td>
 </tr>
-</tbody>
-</table>
-
-
-</div>
-</div>
-</figure>
-</div>
-</div>
+</tbody></table>
 </section>
-<section id="run-time" class="slide level2">
-<h2><span data-auto-animate="true">Run time</span></h2>
-<div class="cell">
-<div id="tbl-table2" class="cell quarto-float quarto-figure quarto-figure-center">
-<figure class="quarto-float quarto-float-tbl">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-table2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;2: Total Accuracy of the LLMs and Run Time
-</figcaption>
-<div aria-describedby="tbl-table2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output-display">
-<table class="do-not-create-environment cell caption-top">
-<thead>
-<tr class="header">
-<th style="text-align: left;">Model</th>
-<th style="text-align: right;">Accuracy</th>
-<th style="text-align: left;">Run_Time</th>
+<section id="total-accuracy-of-the-llms-and-run-time" class="slide level2">
+<h2><span data-auto-animate="true">Total Accuracy of the LLMs and Run Time</span></h2>
+<table>
+<tbody><tr>
+<th>
+Model
+</th>
+<th>
+Accuracy
+</th>
+<th>
+Run time
+</th>
 </tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">llama3.1</td>
-<td style="text-align: right;">0.693</td>
-<td style="text-align: left;">9.21 mins</td>
+<tr class="fragment">
+<td>
+llama3.1
+</td>
+<td style="background:#ffeb3b;">
+0.693
+</td>
+<td>
+9.21 mins
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">gemma3</td>
-<td style="text-align: right;">0.594</td>
-<td style="text-align: left;">9.02 mins</td>
+<tr class="fragment">
+<td>
+gemma3
+</td>
+<td>
+0.594
+</td>
+<td>
+9.02 mins
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">medllama2</td>
-<td style="text-align: right;">0.533</td>
-<td style="text-align: left;">9.61 mins</td>
+<tr class="fragment">
+<td>
+medllama2
+</td>
+<td>
+0.533
+</td>
+<td>
+9.61 mins
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">mistral</td>
-<td style="text-align: right;">0.594</td>
-<td style="text-align: left;">11.55 mins</td>
+<tr class="fragment">
+<td>
+mistral
+</td>
+<td>
+0.594
+</td>
+<td>
+11.55 mins
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">nuextract</td>
-<td style="text-align: right;">0.529</td>
-<td style="text-align: left;">6.91 mins</td>
+<tr class="fragment">
+<td>
+nuextract
+</td>
+<td>
+0.529
+</td>
+<td style="background:#ffeb3b;">
+6.91 mins
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">deepseek-r1</td>
-<td style="text-align: right;">0.483</td>
-<td style="text-align: left;">11.48 mins</td>
+<tr class="fragment">
+<td>
+deepseek-r1
+</td>
+<td>
+0.483
+</td>
+<td>
+11.48 mins
+</td>
 </tr>
-</tbody>
-</table>
-</div>
-</div>
-</figure>
-</div>
-</div>
+</tbody></table>
 </section>
 <section id="furture-work" class="slide level2">
 <h2><span data-auto-animate="true">Furture work</span></h2>
@@ -449,11 +568,11 @@ Table&nbsp;2: Total Accuracy of the LLMs and Run Time
 </section>
 <section id="acknowledgement" class="slide level2">
 <h2><span data-auto-animate="true">Acknowledgement</span></h2>
-<br>
+<p><br></p>
 <p style="text-align: center;">
 </p><p>Dr.&nbsp;Emi Tanaka <a href="emi.tanaka@anu.edu.au">emi.tanaka@anu.edu.au</a></p>
 <p></p>
-<br>
+<p><br></p>
 <p style="text-align: center;">
 </p><p>Professor Jason Pole <a href="j.pole@uq.edu.au">j.pole@uq.edu.au</a></p>
 <p></p>
