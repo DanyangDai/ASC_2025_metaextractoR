@@ -1,0 +1,272 @@
+---
+pagetitle: "metaextractoR: An R Package for Streamlined Data Extraction in Systematic Reviews and Meta-Analyses"
+author: "Danyang Dai"
+date: "4th of Decemeber"
+host: "ASC 2025"
+institute: "The University of Queensland"
+strip-comments: true
+format: 
+  revealjs:
+    logo: images/logos.jpeg
+    slide-number: true
+    incremental: true
+    theme: assets/rladies.scss
+    show-slide-number: all
+    controls: true
+    width: 1280
+    height: 720
+    css: [assets/custom.css, assets/tachyons-addon.css]
+    include-after: |
+      <link rel="stylesheet" href="assets/syntax-highlight.css">
+      <link rel="stylesheet" href="assets/fontawesome-free-6.1.1-web/css/all.min.css">
+      <script src="assets/fontawesome-free-6.1.1-web/js/all.min.js"></script>
+callout-icon: false
+execute:
+  echo: true
+filters:
+   - roughnotation
+---
+
+##  {#title-slide background="images/bg_titlepage.jpeg" background-size="100%"}
+
+```{r setup, include = FALSE}
+#library(tidyverse)
+#library(emo)
+
+rotating_text <- function(x, align = "center") {
+  glue::glue('
+<div style="overflow: hidden; height: 1.2em;">
+<ul class="content__container__list {align}" style="text-align: {align}">
+<li class="content__container__list__item">{x[1]}</li>
+<li class="content__container__list__item">{x[2]}</li>
+<li class="content__container__list__item">{x[3]}</li>
+<li class="content__container__list__item">{x[4]}</li>
+</ul>
+</div>')
+}
+
+fa_list <- function(x, incremental = FALSE) {
+  icons <- names(x)
+  fragment <- ifelse(incremental, "fragment", "")
+  items <- glue::glue('<li class="{fragment}"><span class="fa-li"><i class="{icons}"></i></span> {x}</li>')
+  paste('<ul class="fa-ul">', 
+        paste(items, collapse = "\n"),
+        "</ul>", sep = "\n")
+}
+
+
+detach_package <- function(pkg, character.only = FALSE)
+{
+  if(!character.only)
+  {
+    pkg <- deparse(substitute(pkg))
+  }
+  search_item <- paste("package", pkg, sep = ":")
+  while(search_item %in% search())
+  {
+    detach(search_item, unload = TRUE, character.only = TRUE)
+  }
+}
+```
+
+::: title-box
+<h2>`r rmarkdown::metadata$pagetitle`</h2>
+
+👩🏻‍💻 [`r rmarkdown::metadata$author` \@ `r rmarkdown::metadata$institute`]{.author}
+
+`r rotating_text(c("<i class='fas fa-envelope'></i> danyang.dai@uq.edu.au", "<i class='fas fa-globe'></i> https://dai.netlify.app/","<i class='fa-brands fa-github'></i> @DanyangDai","<i class='fab fa-linkedin-in'></i> @danyang-dai-7529b4152"))`
+:::
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+::: {.absolute .top-0 .rladies-purple .w-100 .font-small}
+[`r rmarkdown::metadata$date`]{.rladies-purple} [`r rmarkdown::metadata$host`]{.rladies-purple}
+:::
+
+::: notes
+Hello everybody. Thank you for coming today. I am a third year PhD student at the University of Queensland. I will be graduating mid-year next year and I will be looking for postdoc and other teaching and researching opportunities worldwide. 
+:::
+
+## [Acknowledgement of Country]{auto-animate="true"}
+
+::: columns
+::: {.column width="50%"}
+<br><br>
+<p style="text-align: center;">I acknowledge the Traditional Owners and their custodianship of the lands on which we meet.  
+We pay our respects to their Ancestors and their descendants, who continue cultural and spiritual connections to Country.</p>
+:::
+
+::: {.column width="50%"}
+![](images/ack_cou.jpg){fig-align="center"}
+
+:::
+
+:::
+
+## [What is Systematic Reivew?]{auto-animate="true"}
+
+- A structured, comprehensive method for identifying and summarising all available evidence on a specific research question.
+
+- Systematic reviews and meta-analyses are pillars of evidence-based medicine. 
+
+
+- ![](images/SR_steps.png){fig-align="center"}
+
+::: notes
+
+Systematic reviews and meta-analyses are widely regarded as the "gold standard" for generating high-quality evidence to inform clinical practice and policy decisions.
+
+The steps includes topic selection, conceptualised and create protocol, searching for studies,screening for studies,appraise studies, data extraction, synthesis and interpret results. 
+
+:::
+
+
+## [Example of a sysrematic review and meta-analysis]{auto-animate="true"}
+
+<iframe src="https://jogh.org/2025/jogh-15-04166" width="1200" height="600" style="border:none;">
+
+</iframe>
+
+
+::: notes
+
+In this systematic review and mate-analysis, we are trying to identify the true prevalence of COVID-associated Acute Kidney Injury. Yes, you heard me correct. Once of the common complication of COVID among hospitalised patients is Acute Kidney Injury (AKI), which is a sudden loss of kidney function measured by the change in serum creatinine. 
+
+The reason driving this pice of meta-analysis was that when I was looking up the AKI prevalence among the published literatures, this number varies from 1% to 70%. Of course the AKI prevalence would be different based on different clinical setting. i.e. ICU vs non-ICU, different COVID management policy such as straight lockdown vs Herd immunity. Regardless, we want to provide a global overview of the COVID-19 AKI prevalence reported in published studies to uncover geographic and socioeconomic disparities.
+
+In order to do that, we extracted data from more than 300 publihsed papers using Covidence.
+
+Just in case if you are not familiar with Covidence, let me show you an exmaple. 
+
+
+:::
+
+## [Data extraction - Covidence]{auto-animate="true"}
+
+
+[![](images/covidence.png){fig-align="center"}](https://app.covidence.org/sign_in)
+
+::: notes
+
+This is a very manual process as you can see, it requires a lot of huamn effort. 
+
+For a more robust process, dual extraction is required sometime. This means that this process will be done twice by two individuals. 
+
+
+:::
+
+
+## [Design of metaextractoR]{auto-animate="true"}
+
+![](images/flowchat.png){fig-align="center" width="1400" height="600"}
+
+::: notes
+
+Given the labour intensive process for data extraction, to remove some of the labour work, we developed this R package, metaextractoR that embeded Large Language Models to help with data extraction. 
+
+The design of this workflow follows the Cochrance systematic review guideline. At each step, there is a human-in-the-loop process incorprated. 
+
+There are three shinyapps that provide user-friendly interface for anyone to extract data using LLMs. 
+
+:::
+
+
+## [Demo]{auto-animate="true"}
+
+![](images/ollama-tool.png){fig-align="center"}
+
+
+## [Accurate Evaluation]{auto-animate="true"}
+
+```{r tbl-table1}
+#| echo: false
+#| tbl-cap: "Accuracy of the LLMs. For all LLMs, the model temperature was set to be 0."
+readRDS(here::here("data/accuracy_TT.rds")) |> 
+  knitr::kable(col.names = c("Model", "No. Patients", "No. AKI", "ICU Only", "Mean Age", "Median Age", "Start Date", "End Date"), 
+               digits = 2,
+               booktabs = TRUE,
+               linesep = "", font_size = 10, escape = FALSE) |> 
+  kableExtra::kable_styling(latex_options = c("striped"))
+
+```
+
+## [Run time]{auto-animate="true"}
+
+```{r tbl-table2}
+#| echo: false
+#| tbl-cap: "Total Accuracy of the LLMs and Run Time"
+#| label: tbl-table2
+
+knitr::kable(
+  data.frame(
+    Model     = c("llama3.1", "gemma3", "medllama2", "mistral", "nuextract", "deepseek-r1"),
+    Accuracy  = c(0.693, 0.594, 0.533, 0.594, 0.529, 0.483),
+    Run_Time  = c("9.21 mins", "9.02 mins", "9.61 mins", "11.55 mins", "6.91 mins", "11.48 mins")
+  ),linesep = "", font_size = 10
+)
+
+```
+
+
+## [Furture work]{auto-animate="true"}
+
+- Expand the extraction to text for qualitative analysis 
+
+- Allow full-text data extraction 
+
+- Allow other closed-sourced LLMs 
+
+
+
+## [Acknowledgement]{auto-animate="true"}
+
+<br>
+<p style="text-align: center;">
+
+Dr. Emi Tanaka  [emi.tanaka@anu.edu.au](emi.tanaka@anu.edu.au)
+
+</p>
+
+<br>
+<p style="text-align: center;">
+
+Professor Jason Pole  [j.pole@uq.edu.au](j.pole@uq.edu.au)
+
+
+</p>
+
+<br>
+
+
+::: {layout="[50,50]"}
+
+![](images/logos.jpeg){fig-align="center" width="300" height="300"}
+
+![](images/ssa.png){fig-align="center" width="300" height="300"}
+
+:::
+
+## [Github and Installation]{auto-animate="true"}
+
+`r fa_list(c("fa-solid fa-globe" = "https://danyangdai.github.io/metaextractoR/","fa-solid fa-code-branch" = "Collaborate at: https://github.com/DanyangDai/metaextractoR"))`
+
+::: columns
+::: column
+<div style="text-align:center;">
+![](images/qr_github.png){width=300} 
+</div>
+
+<div style="text-align:center;">
+<i class="fa-brands fa-github fa-2x"></i>
+</div>
+:::
+::: column
+<div style="text-align:center;">
+![](images/qr_youtube.png){width=300} 
+</div>
+
+<div style="text-align:center;">
+<i class="fa-brands fa-youtube fa-2x"></i>
+</div>
+:::
+:::
